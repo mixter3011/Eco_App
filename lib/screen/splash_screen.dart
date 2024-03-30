@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:slide_to_act/slide_to_act.dart';
-import 'package:smarthomeui/pages/home_page.dart';
+import 'package:smarthomeui/pages/login_page.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -43,7 +43,7 @@ class SplashScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const HomePage(),
+                    builder: (context) => const LoginPage(),
                   ),
                 );
               },
