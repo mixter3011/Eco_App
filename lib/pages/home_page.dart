@@ -10,21 +10,40 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+List mySmartDevices = [
+  // [ smartDeviceName, iconPath, powerStatus, roomName ]
+  ["Smart Light", "lib/icons/light-bulb.png", true, "Living Room"],
+  ["Smart AC", "lib/icons/air-conditioner.png", false, "Bedroom"],
+  ["Smart TV", "lib/icons/smart-tv.png", false, "Bedroom"],
+  ["Smart Fan", "lib/icons/fan.png", false, "Living Room"],
+];
+
 class _HomePageState extends State<HomePage> {
   // padding constants
   final double horizontalPadding = 40;
   final double verticalPadding = 25;
 
   // list of smart devices
+  /*
+  [CHITRAKSH]: I have moved this list to the top of the file so I could access it in the devices_page.dart
+  
   List mySmartDevices = [
-    // [ smartDeviceName, iconPath , powerStatus ]
-    ["Smart Light", "lib/icons/light-bulb.png", true],
-    ["Smart AC", "lib/icons/air-conditioner.png", false],
-    ["Smart TV", "lib/icons/smart-tv.png", false],
-    ["Smart Fan", "lib/icons/fan.png", false],
+    [ smartDeviceName, iconPath, powerStatus, roomName ]
+    ["Smart Light", "lib/icons/light-bulb.png", true, "Living Room"],
+    ["Smart AC", "lib/icons/air-conditioner.png", false, "Bedroom"],
+    ["Smart TV", "lib/icons/smart-tv.png", false, "Bedroom"],
+    ["Smart Fan", "lib/icons/fan.png", false, "Living Room"],
   ];
+    
+  */
 
   // power button switched
+
+  /* 
+  [TODO:] If I flip the switches on the home page, it reflects on the device page.
+  But if I flip the switches on the device page, it doesn't reflect on the home page unless I hot reload using R.
+  Need to figure out why that is.
+  */
   void powerSwitchChanged(bool value, int index) {
     setState(() {
       mySmartDevices[index][2] = value;
@@ -48,7 +67,9 @@ class _HomePageState extends State<HomePage> {
               children: [
                 const Text(
                   "Welcome Home,",
-                  style: TextStyle(fontSize: 20,),
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
                 ),
                 Text(
                   'Sabyasachi',
