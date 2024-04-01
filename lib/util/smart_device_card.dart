@@ -70,10 +70,12 @@ class SmartDeviceCard extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     smartDeviceName,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
+                      color: powerOn
+                          ? Theme.of(context).colorScheme.inversePrimary
+                          : Theme.of(context).colorScheme.inversePrimary,
                       fontSize: 20,
-                      color: Colors.black,
                     ),
                     textAlign: TextAlign.center,
                   ),
