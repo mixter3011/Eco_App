@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:smarthomeui/components/my_textfield.dart';
-import 'package:smarthomeui/components/primary_button.dart';
 import 'package:smarthomeui/components/round_textfield.dart';
 import 'package:smarthomeui/components/secondary_button.dart';
 import 'package:smarthomeui/pages/sign_up.dart';

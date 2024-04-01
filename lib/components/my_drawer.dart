@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smarthomeui/components/my_drawer_tile.dart';
 import 'package:smarthomeui/pages/settings_page.dart';
+import 'package:smarthomeui/screen/splash_screen.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -30,32 +31,41 @@ class MyDrawer extends StatelessWidget {
 
           // home list title
           MyDrawerTile(
-            text: "H O M E", 
-            icon: Icons.home, 
+            text: "H O M E",
+            icon: Icons.home,
             onTap: () => Navigator.pop(context),
           ),
 
           // settings list title
           MyDrawerTile(
-            text: "S E T T I N G S", 
-            icon: Icons.settings, 
+            text: "S E T T I N G S",
+            icon: Icons.settings,
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsPage(),
-             ),
-            );
-           },
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SettingsPage(),
+                ),
+              );
+            },
           ),
 
           const Spacer(),
 
           // logout list title
           MyDrawerTile(
-            text: "L O G O U T", 
-            icon: Icons.logout, 
-            onTap: () {}
-          ),
-
+              text: "L O G O U T",
+              icon: Icons.logout,
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SplashScreen(),
+                  ),
+                );
+              }),
           const SizedBox(height: 25),
         ],
       ),

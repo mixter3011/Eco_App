@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smarthomeui/components/primary_button.dart';
+import 'package:smarthomeui/components/secondary_button.dart';
 import 'package:smarthomeui/pages/home_page.dart';
 import 'package:smarthomeui/pages/sign_up.dart';
 
@@ -120,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
           const SizedBox(
             height: 25,
           ),
-          PrimaryButton(
+          SecondaryButton(
             title: "Sign up with E-mail",
             onPressed: () {
               Navigator.push(context,

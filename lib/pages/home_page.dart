@@ -48,7 +48,9 @@ class _HomePageState extends State<HomePage> {
               children: [
                 const Text(
                   "Welcome Home,",
-                  style: TextStyle(fontSize: 20,),
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
                 ),
                 Text(
                   'Sabyasachi',
@@ -70,13 +72,15 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 10),
 
           // smart devices grid
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
-            child: const Text(
-              "Smart Devices",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
+          SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+              child: const Text(
+                "Smart Devices",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                ),
               ),
             ),
           ),
