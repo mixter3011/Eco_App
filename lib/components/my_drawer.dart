@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smarthomeui/components/my_drawer_tile.dart';
+import 'package:smarthomeui/pages/add_emission_page.dart';
 import 'package:smarthomeui/pages/redeem_page.dart';
 import 'package:smarthomeui/pages/settings_page.dart';
 import 'package:smarthomeui/pages/devices_page.dart';
@@ -76,7 +77,7 @@ class MyDrawer extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const SettingsPage(),
+                  builder: (context) => const AddEmissionPage(),
                 ),
               );
             },
