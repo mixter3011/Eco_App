@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:smarthomeui/pages/devices_page.dart';
 import 'package:smarthomeui/themes/theme_provider.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -28,20 +30,56 @@ class SettingsPage extends StatelessWidget {
               children: [
                 //dark mode
                 Text(
-                  "Dark Mode",
+                  "Theme Mode",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
+                    fontSize: 20,
                     color: Theme.of(context).colorScheme.inversePrimary,
                   ),
                 ),
-            
+
                 // switch
                 CupertinoSwitch(
-                  value: Provider.of<ThemeProvider>(context, listen: false).isDarkMode, 
-                  onChanged: (value) => 
-                      Provider.of<ThemeProvider>(context, listen: false).toggleTheme(),
+                  value: Provider.of<ThemeProvider>(context, listen: false)
+                      .isDarkMode,
+                  onChanged: (value) =>
+                      Provider.of<ThemeProvider>(context, listen: false)
+                          .toggleTheme(),
                 ),
               ],
+            ),
+          ),
+          const SizedBox(height: 20),
+          GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const DevicesPage(),
+                  ));
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.secondary,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              margin: const EdgeInsets.only(left: 25, top: 10, right: 25),
+              padding: const EdgeInsets.all(25),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  //dark mode
+                  Text(
+                    "Add Devices",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Theme.of(context).colorScheme.inversePrimary,
+                    ),
+                  ),
+                ],
+              ),
             ),
           )
         ],
