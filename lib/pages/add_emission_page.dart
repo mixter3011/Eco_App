@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:smarthomeui/util/add_emission_modal.dart';
 import 'package:pie_chart/pie_chart.dart';
+import 'package:smarthomeui/util/add_emission_modal.dart';
 
 class AddEmissionPage extends StatefulWidget {
   const AddEmissionPage({Key? key}) : super(key: key);
@@ -81,10 +81,14 @@ class _AddEmissionPageState extends State<AddEmissionPage> {
     calculateEmissionsValue();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Add Emission"),
+        title: const Text(
+          "ADD EMISSION",
+          style: TextStyle(fontFamily: "Poppins"),
+        ),
         backgroundColor: Theme.of(context).colorScheme.background,
       ),
       body: Column(
@@ -98,7 +102,7 @@ class _AddEmissionPageState extends State<AddEmissionPage> {
                 Text(
                   formatMonthYear(
                       DateTime.parse(DateTime.now().toString().split(' ')[0])),
-                  style: const TextStyle(fontSize: 24),
+                  style: const TextStyle(fontSize: 24, fontFamily: "Poppins"),
                 ),
                 Row(
                   children: [
@@ -110,11 +114,12 @@ class _AddEmissionPageState extends State<AddEmissionPage> {
                       children: [
                         Text(
                           "$emissionsValue ",
-                          style: const TextStyle(fontSize: 48),
+                          style: const TextStyle(
+                              fontSize: 48, fontFamily: "Poppins"),
                         ),
                         const Text(
                           "ton CO₂",
-                          style: TextStyle(fontSize: 24),
+                          style: TextStyle(fontSize: 24, fontFamily: "Poppins"),
                         ),
                       ],
                     )
@@ -136,20 +141,26 @@ class _AddEmissionPageState extends State<AddEmissionPage> {
               dataMap: emissionData,
               animationDuration: const Duration(milliseconds: 500),
               chartLegendSpacing: 32,
-              chartRadius: MediaQuery.of(context).size.width / 1.75,
-              initialAngleInDegree: 180,
+              chartRadius: MediaQuery.of(context).size.width / 2,
+              initialAngleInDegree: 0,
               chartType: ChartType.ring,
-              ringStrokeWidth: 40,
-              colorList: const [
+              ringStrokeWidth: 30,
+              centerText: "$emissionsValue",
+              centerTextStyle: const TextStyle(
+                  fontSize: 36,
+                  fontFamily: "Poppins",
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black),
+              colorList: [
                 /* 
                 [TODO:]
-                This needs a lot more experimentation to get the colors right.
-                Just can't seem to get a good black and grey color scheme.
+                Figure out better colour scheme to go with the app's theme.
+                Just using the black and grey shades looked confusing.
                 */
-                Color.fromRGBO(149, 211, 151, 1),
-                Color.fromRGBO(21, 137, 28, 1),
-                Color.fromRGBO(185, 244, 208, 1),
-                Color.fromRGBO(48, 83, 62, 1),
+                Colors.green.shade200,
+                Colors.green.shade400,
+                Colors.green.shade600,
+                Colors.green.shade800,
               ],
               legendOptions: const LegendOptions(
                 showLegends: true,
@@ -157,7 +168,7 @@ class _AddEmissionPageState extends State<AddEmissionPage> {
               chartValuesOptions: const ChartValuesOptions(
                 showChartValues: false,
                 showChartValueBackground: false,
-                showChartValuesInPercentage: false,
+                showChartValuesInPercentage: true,
                 showChartValuesOutside: false,
                 decimalPlaces: 1,
                 chartValueStyle: TextStyle(
@@ -176,17 +187,20 @@ class _AddEmissionPageState extends State<AddEmissionPage> {
                       const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
                   child: Row(
                     children: [
-                      Icon(emission[2], size: 20), // Icon
-                      SizedBox(width: 8),
+                      Icon(emission[2], size: 20),
+                      const SizedBox(width: 8),
                       Text(
                         '${emission[0]} Emissions:',
                         style: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "Poppins"),
                       ),
                       const SizedBox(width: 8),
                       Text(
                         '${emission[1].toStringAsFixed(1)}',
-                        style: const TextStyle(fontSize: 16),
+                        style: const TextStyle(
+                            fontSize: 16, fontFamily: "Poppins"),
                       ),
                     ],
                   ),
