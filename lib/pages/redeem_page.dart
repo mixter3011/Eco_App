@@ -78,6 +78,13 @@ class _RedeemPageState extends State<RedeemPage> {
                           if (giftCards[index][2] <= coins) {
                             // User CAN redeem
                             redeemCard(giftCards[index][2]);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content:
+                                    Text('${giftCards[index][1]} redeemed!'),
+                                duration: const Duration(seconds: 2),
+                              ),
+                            );
                           } else {
                             // User CANNOT Redeem
                             /* 

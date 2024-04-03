@@ -38,6 +38,7 @@ dependencies:
   google_fonts: ^6.2.1
   provider: ^6.1.2
   pie_chart: ^5.4.0
+  easy_pie_chart: ^1.0.0
   slide_to_act: ^2.0.2
 
 dev_dependencies:

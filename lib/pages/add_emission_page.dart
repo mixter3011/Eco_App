@@ -10,11 +10,11 @@ class AddEmissionPage extends StatefulWidget {
 }
 
 List emissions = [
-  // [ emissionType, emissionValue ]
-  ["Food", 0.0],
-  ["Electricity", 0.0],
-  ["Vehicle", 0.0],
-  ["Purchases", 0.0],
+  // [ emissionType, emissionValue, emissionIcon ]
+  ["Food", 0.0, Icons.fastfood],
+  ["Electricity", 0.0, Icons.flash_on],
+  ["Vehicle", 0.0, Icons.directions_car],
+  ["Purchases", 0.0, Icons.shopping_cart],
 ];
 
 class _AddEmissionPageState extends State<AddEmissionPage> {
@@ -131,25 +131,25 @@ class _AddEmissionPageState extends State<AddEmissionPage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 64.0),
+            padding: const EdgeInsets.only(top: 64.0, bottom: 64, left: 32),
             child: PieChart(
               dataMap: emissionData,
               animationDuration: const Duration(milliseconds: 500),
               chartLegendSpacing: 32,
-              chartRadius: MediaQuery.of(context).size.width / 2,
-              initialAngleInDegree: 0,
+              chartRadius: MediaQuery.of(context).size.width / 1.75,
+              initialAngleInDegree: 180,
               chartType: ChartType.ring,
-              ringStrokeWidth: 30,
+              ringStrokeWidth: 40,
               colorList: const [
                 /* 
                 [TODO:]
-                Figure out better colour scheme to go with the app's theme.
-                Just using the black and grey shades looked confusing.
+                This needs a lot more experimentation to get the colors right.
+                Just can't seem to get a good black and grey color scheme.
                 */
-                Colors.red,
-                Colors.amber,
-                Colors.cyan,
-                Colors.purple,
+                Color.fromRGBO(149, 211, 151, 1),
+                Color.fromRGBO(21, 137, 28, 1),
+                Color.fromRGBO(185, 244, 208, 1),
+                Color.fromRGBO(48, 83, 62, 1),
               ],
               legendOptions: const LegendOptions(
                 showLegends: true,
@@ -157,7 +157,7 @@ class _AddEmissionPageState extends State<AddEmissionPage> {
               chartValuesOptions: const ChartValuesOptions(
                 showChartValues: false,
                 showChartValueBackground: false,
-                showChartValuesInPercentage: true,
+                showChartValuesInPercentage: false,
                 showChartValuesOutside: false,
                 decimalPlaces: 1,
                 chartValueStyle: TextStyle(
@@ -176,7 +176,7 @@ class _AddEmissionPageState extends State<AddEmissionPage> {
                       const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
                   child: Row(
                     children: [
-                      Icon(Icons.eco, size: 20),
+                      Icon(emission[2], size: 20), // Icon
                       SizedBox(width: 8),
                       Text(
                         '${emission[0]} Emissions:',
