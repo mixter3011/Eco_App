@@ -40,6 +40,10 @@ dependencies:
   provider: ^6.1.2
   slide_to_act: ^2.0.2
   dot_navigation_bar: ^1.0.2
+  pie_chart: ^5.4.0
+  wifi_iot: ^0.3.19
+  url_launcher: ^6.2.5
+  android_intent: ^2.0.2
 
 dev_dependencies:
   flutter_test:

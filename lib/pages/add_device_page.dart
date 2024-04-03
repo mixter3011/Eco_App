@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:smarthomeui/pages/gnest_page.dart';
+import 'package:smarthomeui/pages/matter_page.dart';
 
 class AddDevicePage extends StatefulWidget {
   const AddDevicePage({Key? key}) : super(key: key);
@@ -8,16 +10,6 @@ class AddDevicePage extends StatefulWidget {
 }
 
 class _AddDevicePageState extends State<AddDevicePage> {
-  List mySmartDevices = [
-    // [ smartDeviceName, iconPath , powerStatus ]
-    ["Smart Light", "lib/icons/light-bulb.png", false, "Bedroom"],
-    ["Haier LQT786", "lib/icons/air-conditioner.png", false, "Bedroom"],
-    ["TLC 5V789", "lib/icons/smart-tv.png", true, "Bedroom"],
-    ["NEXIS", "lib/icons/laptop.png", true, ""],
-    ["Xiaomi 11 Lite NE", "lib/icons/smartphone.png", true, ""],
-    ["WH-CH520", "lib/icons/music.png", false, ""],
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +27,7 @@ class _AddDevicePageState extends State<AddDevicePage> {
       body: Column(
         children: [
           const Padding(
-            padding: EdgeInsets.only(top: 50.0),
+            padding: EdgeInsets.only(top: 40.0),
             child: Center(
               child: Text(
                 "Choose a device",
@@ -54,7 +46,15 @@ class _AddDevicePageState extends State<AddDevicePage> {
             ),
             label: "Matter-enabled device",
             subtext: "Add devices with the Matter logo",
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const MatterPage(),
+                ),
+              );
+            },
           ),
           const SizedBox(height: 25),
           _buildDeviceOptionRow(
@@ -68,7 +68,15 @@ class _AddDevicePageState extends State<AddDevicePage> {
             label: "Google Nest or partner device",
             subtext:
                 "Add Nest devices, Chromecast, Google\nAssistant-enabled devices or partner devices\nlabelled 'Seamless Setup with the Google\nHome app'",
-            onTap: () {},
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const GoogleNestPage(),
+                ),
+              );
+            },
           ),
           const SizedBox(height: 25),
           _buildDeviceOptionRow(
@@ -118,7 +126,8 @@ class _AddDevicePageState extends State<AddDevicePage> {
                       style: TextStyle(
                           fontFamily: "Poppins",
                           fontSize: 12,
-                          color: Colors.grey.shade800),
+                          fontWeight: FontWeight.w300,
+                          color: Theme.of(context).colorScheme.inversePrimary),
                     ),
                   ),
               ],

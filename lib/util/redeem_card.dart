@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import, must_be_immutable
+// ignore_for_file: unused_import, must_be_immutable, library_private_types_in_public_api
 /*
 [CHITRAKSH] 
 Rewritten version of smart_device_card.dart, but implements some frontend-coded functionality for the redeem functions.

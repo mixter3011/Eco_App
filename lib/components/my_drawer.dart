@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smarthomeui/components/my_drawer_tile.dart';
+import 'package:smarthomeui/pages/add_emission_page.dart';
 import 'package:smarthomeui/pages/redeem_page.dart';
 import 'package:smarthomeui/pages/settings_page.dart';
 import 'package:smarthomeui/screen/splash_screen.dart';
@@ -43,7 +44,15 @@ class MyDrawer extends StatelessWidget {
           MyDrawerTile(
             text: "M Y CO₂ F O O T P R I N T",
             icon: Icons.workspaces_outlined,
-            onTap: () => Navigator.pop(context),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AddEmissionPage(),
+                ),
+              );
+            },
           ),
 
           const SizedBox(height: 30),
@@ -54,10 +63,11 @@ class MyDrawer extends StatelessWidget {
             icon: Icons.redeem,
             onTap: () {
               Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const RedeemPage(),
-                )
-              );
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const RedeemPage(),
+                  ));
             },
           ),
 
