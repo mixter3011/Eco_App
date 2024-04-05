@@ -1,10 +1,9 @@
-//import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 class MyBottomBar extends StatelessWidget {
-  final int index;
+  final int index; 
   final Function(int?) onTap;
-  const MyBottomBar({
+  const MyBottomBar ({
     Key? key,
     required this.index,
     required this.onTap,
@@ -15,21 +14,18 @@ class MyBottomBar extends StatelessWidget {
     return BottomNavigationBar(
       currentIndex: index,
       onTap: onTap,
-      selectedItemColor: Colors.grey[200],
-      unselectedItemColor: Colors.grey[800],
-      backgroundColor: Colors.grey.withOpacity(0.1),
+      selectedItemColor: Colors.grey[800],
+      unselectedItemColor: Colors.grey[400],
+      backgroundColor: Colors.transparent,
       showSelectedLabels: false,
       showUnselectedLabels: false,
       elevation: 0,
       type: BottomNavigationBarType.fixed,
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: 'Home'),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.notifications_outlined), label: 'Home'),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_outline), label: 'Home'),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline), label: 'Home'),
+        BottomNavigationBarItem(icon: Icon(Icons.notification_add_outlined), label: 'Notification'),
+        BottomNavigationBarItem(icon: Icon(Icons.favorite_outline_outlined), label: 'favourites'),
+        BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: 'Profile'),
       ],
     );
   }

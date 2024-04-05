@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smarthomeui/components/my_drawer_tile.dart';
 import 'package:smarthomeui/pages/add_emission_page.dart';
+import 'package:smarthomeui/pages/meta_mask_wallet_page.dart';
 import 'package:smarthomeui/pages/redeem_page.dart';
 import 'package:smarthomeui/pages/settings_page.dart';
 import 'package:smarthomeui/screen/splash_screen.dart';
@@ -72,6 +73,23 @@ class MyDrawer extends StatelessWidget {
           ),
 
           const SizedBox(height: 30),
+
+          // Redeem list title
+          MyDrawerTile(
+            text: "M Y  C O U P O N S",
+            icon: Icons.redeem,
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MetaMaskWallet(),
+                  ));
+            },
+          ),
+
+          const SizedBox(height: 30),
+
 
           // settings list title
           MyDrawerTile(

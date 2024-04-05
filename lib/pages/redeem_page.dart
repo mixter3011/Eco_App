@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_string_escapes
+
 import 'package:smarthomeui/util/redeem_card.dart';
 import 'package:flutter/material.dart';
 
@@ -14,10 +16,10 @@ class RedeemPage extends StatefulWidget {
 
 List giftCards = [
   // [ brandName, cardDescription, cardPoints ]
-  ["Sample Brand ABC", "Lorem ipsum dolor sit amet", 100],
-  ["Sample Brand DEF", "Consectetur adipiscing elit", 400],
-  ["Sample Brand GHI", "Eiusmod tempor incididunt", 300],
-  ["Sample Brand JKL", "Et dolore magna aliqua", 250],
+  ["lib/assets/images/digitalocean.png","Digital Ocean Credits", "Get services worth 50 dollars", 100],
+  ["lib/assets/images/gucci-removebg-preview.png","GUCCI", "Upto ₹1000 cashback", 400],
+  ["lib/assets/images/leetcode.png","Leet Coins", "Get upto 150 LeetCode Coins", 300],
+  ["lib/assets/images/amazon-removebg-preview.png","Amazon Gift Voucher", "Gift Voucher worth ₹500", 200],
 ];
 
 class _RedeemPageState extends State<RedeemPage> {
@@ -70,14 +72,15 @@ class _RedeemPageState extends State<RedeemPage> {
                       padding: const EdgeInsets.symmetric(
                           vertical: 8, horizontal: 20),
                       child: RedeemCard(
-                        brandName: giftCards[index][0],
-                        cardDescription: giftCards[index][1],
-                        cardPoints: giftCards[index][2],
+                        imagePath: giftCards[index][0],
+                        brandName: giftCards[index][1],
+                        cardDescription: giftCards[index][2],
+                        cardPoints: giftCards[index][3],
                         coins: coins,
                         onRedeem: (value) {
-                          if (giftCards[index][2] <= coins) {
+                          if (giftCards[index][3] <= coins) {
                             // User CAN redeem
-                            redeemCard(giftCards[index][2]);
+                            redeemCard(giftCards[index][3]);
                           } else {
                             // User CANNOT Redeem
                             /* 

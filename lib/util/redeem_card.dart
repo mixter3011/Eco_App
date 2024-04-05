@@ -1,9 +1,4 @@
-// ignore_for_file: unused_import, must_be_immutable, library_private_types_in_public_api
-/*
-[CHITRAKSH] 
-Rewritten version of smart_device_card.dart, but implements some frontend-coded functionality for the redeem functions.
-Basic redeeming should work from a frontend perspective, using the app you'll know what I mean.
-*/
+// ignore_for_file: must_be_immutable, unused_import
 
 import 'dart:math';
 import 'package:flutter/material.dart';
@@ -14,6 +9,7 @@ class RedeemCard extends StatefulWidget {
   final String cardDescription;
   final num cardPoints;
   final num coins;
+  final String imagePath; // New parameter for image path
   void Function(bool)? onRedeem;
 
   RedeemCard({
@@ -22,6 +18,7 @@ class RedeemCard extends StatefulWidget {
     required this.cardDescription,
     required this.cardPoints,
     required this.coins,
+    required this.imagePath, // Updated constructor to accept image path
     required this.onRedeem,
   }) : super(key: key);
 
@@ -37,12 +34,15 @@ class _RedeemCardState extends State<RedeemCard> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // icon
+          // User input image
           Column(
             children: [
-              Icon(Icons.card_giftcard_rounded,
-                  size: 65,
-                  color: Theme.of(context).colorScheme.inversePrimary),
+              Image.asset(
+                widget.imagePath, // Using the provided image path
+                width: 65,
+                height: 65,
+                fit: BoxFit.cover,
+              ),
             ],
           ),
 
@@ -55,6 +55,7 @@ class _RedeemCardState extends State<RedeemCard> {
                   Text(
                     widget.brandName,
                     style: TextStyle(
+                      fontFamily: "Poppins",
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
                       color: Theme.of(context).colorScheme.inversePrimary,
@@ -65,6 +66,7 @@ class _RedeemCardState extends State<RedeemCard> {
                   Text(
                     widget.cardDescription,
                     style: TextStyle(
+                      fontFamily: "Poo",
                       fontSize: 14,
                       color: Theme.of(context).colorScheme.inversePrimary,
                     ),
@@ -92,12 +94,8 @@ class _RedeemCardState extends State<RedeemCard> {
               ),
             ),
           ),
-          // button
+          // Button
           ElevatedButton(
-            /* 
-            [CHITRAKSH]
-            Template function which implements the event which happens when the button is pressed
-            */
             onPressed: () {
               if (widget.cardPoints <= widget.coins) {
                 if (widget.onRedeem != null) {
@@ -110,10 +108,6 @@ class _RedeemCardState extends State<RedeemCard> {
               }
             },
             style: ElevatedButton.styleFrom(
-              /* 
-              [TODO:]
-              Identify appropriate colours to implement theme-provided colour scheme for enabled & disabled button.
-              */
               backgroundColor: widget.cardPoints <= widget.coins
                   ? Colors.black
                   : Colors.grey.withOpacity(0.25),
