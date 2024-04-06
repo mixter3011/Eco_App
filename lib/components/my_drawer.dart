@@ -5,6 +5,7 @@ import 'package:smarthomeui/pages/meta_mask_wallet_page.dart';
 import 'package:smarthomeui/pages/redeem_page.dart';
 import 'package:smarthomeui/pages/settings_page.dart';
 import 'package:smarthomeui/screen/splash_screen.dart';
+import 'package:smarthomeui/pages/stats_page.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -58,6 +59,23 @@ class MyDrawer extends StatelessWidget {
 
           const SizedBox(height: 30),
 
+          // contribution list title
+          MyDrawerTile(
+            text: "S T A T S",
+            icon: Icons.bar_chart,
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const StatsPage(),
+                ),
+              );
+            },
+          ),
+
+          const SizedBox(height: 30),
+
           // Redeem list title
           MyDrawerTile(
             text: "R E D E E M",
@@ -89,7 +107,6 @@ class MyDrawer extends StatelessWidget {
           ),
 
           const SizedBox(height: 30),
-
 
           // settings list title
           MyDrawerTile(

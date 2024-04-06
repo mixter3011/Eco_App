@@ -53,75 +53,75 @@ class _HomePageState extends State<HomePage> {
       drawer: const MyDrawer(),
       body: // welcome home
           Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Welcome Home,",
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                    ),
-                    Text(
-                      'Sabyasachi',
-                      style: GoogleFonts.bebasNeue(fontSize: 72),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 5),
-          
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 40.0),
-                child: Divider(
-                  thickness: 1,
-                  color: Color.fromARGB(255, 204, 204, 204),
-                ),
-              ),
-          
-              const SizedBox(height: 10),
-          
-              // smart devices grid
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
-                child: const Text(
-                  "Smart Devices",
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Welcome Home,",
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24,
+                    fontSize: 20,
                   ),
                 ),
-              ),
-              const SizedBox(height: 10),
-          
-              // grid
-              Expanded(
-                child: GridView.builder(
-                  itemCount: 6,
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 1 / 1.3,
-                  ),
-                  itemBuilder: (context, index) {
-                    return SmartDeviceBox(
-                      smartDeviceName: mySmartDevices[index][0],
-                      iconPath: mySmartDevices[index][1],
-                      powerOn: mySmartDevices[index][2],
-                      onChanged: (value) => powerSwitchChanged(value, index),
-                    );
-                  },
+                Text(
+                  'Sabyasachi',
+                  style: GoogleFonts.bebasNeue(fontSize: 72),
                 ),
-              ),
-              GlassBox(
-                child: MyBottomBar(
-                    index: _currentBottomIndex, onTap: _handleBottomIndexChange),
-              )
-            ],
+              ],
+            ),
           ),
+          const SizedBox(height: 5),
+
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 40.0),
+            child: Divider(
+              thickness: 1,
+              color: Color.fromARGB(255, 204, 204, 204),
+            ),
+          ),
+
+          const SizedBox(height: 10),
+
+          // smart devices grid
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+            child: const Text(
+              "Smart Devices",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+
+          // grid
+          Expanded(
+            child: GridView.builder(
+              itemCount: 6,
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 1 / 1.3,
+              ),
+              itemBuilder: (context, index) {
+                return SmartDeviceBox(
+                  smartDeviceName: mySmartDevices[index][0],
+                  iconPath: mySmartDevices[index][1],
+                  powerOn: mySmartDevices[index][2],
+                  onChanged: (value) => powerSwitchChanged(value, index),
+                );
+              },
+            ),
+          ),
+          GlassBox(
+            child: MyBottomBar(
+                index: _currentBottomIndex, onTap: _handleBottomIndexChange),
+          )
+        ],
+      ),
     );
   }
 }
