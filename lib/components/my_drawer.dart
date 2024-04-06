@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:smarthomeui/components/my_drawer_tile.dart';
 import 'package:smarthomeui/pages/add_emission_page.dart';
 import 'package:smarthomeui/pages/meta_mask_wallet_page.dart';
+import 'package:smarthomeui/pages/quota.dart';
 import 'package:smarthomeui/pages/redeem_page.dart';
 import 'package:smarthomeui/pages/settings_page.dart';
 import 'package:smarthomeui/screen/splash_screen.dart';
@@ -39,7 +40,24 @@ class MyDrawer extends StatelessWidget {
             onTap: () => Navigator.pop(context),
           ),
 
-          const SizedBox(height: 30),
+          const SizedBox(height: 20),
+
+          // Progress/Quota
+          MyDrawerTile(
+            text: "M Y  P R O G R E S S",
+            icon: Icons.bar_chart,
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const QuotaPage(),
+                ),
+              );
+            },
+          ),
+
+          const SizedBox(height: 20),
 
           // carbon footprint list title
           MyDrawerTile(
@@ -56,7 +74,7 @@ class MyDrawer extends StatelessWidget {
             },
           ),
 
-          const SizedBox(height: 30),
+          const SizedBox(height: 20),
 
           // Redeem list title
           MyDrawerTile(
@@ -72,7 +90,7 @@ class MyDrawer extends StatelessWidget {
             },
           ),
 
-          const SizedBox(height: 30),
+          const SizedBox(height: 20),
 
           // Redeem list title
           MyDrawerTile(
@@ -88,8 +106,7 @@ class MyDrawer extends StatelessWidget {
             },
           ),
 
-          const SizedBox(height: 30),
-
+          const SizedBox(height: 20),
 
           // settings list title
           MyDrawerTile(

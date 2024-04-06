@@ -16,9 +16,9 @@ class RedeemPage extends StatefulWidget {
 
 List giftCards = [
   // [ brandName, cardDescription, cardPoints ]
-  ["lib/assets/images/digitalocean.png","Digital Ocean Credits", "Get services worth 50 dollars", 100],
+  ["lib/assets/images/bms-removebg-preview.png","Book My Show", "Upto ₹200 cashback", 100],
   ["lib/assets/images/gucci-removebg-preview.png","GUCCI", "Upto ₹1000 cashback", 400],
-  ["lib/assets/images/leetcode.png","Leet Coins", "Get upto 150 LeetCode Coins", 300],
+  ["lib/assets/images/gourment-removebg-preview.png","Gourment", "Get Exclusive dining experience worth ₹2000", 300],
   ["lib/assets/images/amazon-removebg-preview.png","Amazon Gift Voucher", "Gift Voucher worth ₹500", 200],
 ];
 
