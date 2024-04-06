@@ -54,7 +54,7 @@ class _QuotaPageState extends State<QuotaPage> {
     ["2024-03-29", 18, 19, 15, 20],
     ["2024-03-30", 15, 24, 23, 17],
     ["2024-03-31", 16, 22, 17, 23],
-    ["2024-04-01", 23, 18, 20, 22], 
+    ["2024-04-01", 23, 18, 20, 22],
     ["2024-04-02", 24, 16, 21, 19],
     ["2024-04-03", 17, 20, 16, 24],
     ["2024-04-04", 20, 24, 19, 15],
@@ -150,6 +150,7 @@ class _QuotaPageState extends State<QuotaPage> {
 
   @override
   Widget build(BuildContext context) {
+    String co2Usage = (calculatetotalCO2usage() * 100).toStringAsFixed(2);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -161,25 +162,49 @@ class _QuotaPageState extends State<QuotaPage> {
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.background,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            const Text(
-              "DAILY QUOTA: 100 UNITS",
-              style: TextStyle(
-                  fontFamily: "Poppins",
-                  fontWeight: FontWeight.bold,
-                  fontSize: 34),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 160),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 8.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '$co2Usage% of Quota Hit',
+                  style: const TextStyle(
+                    fontFamily: "Poppins",
+                    fontWeight: FontWeight.bold,
+                    fontSize: 28,
+                  ),
                 ),
+                const SizedBox(height: 8.0),
+                Text(
+                  _getCurrentDateText(DateTime.now()),
+                  style: const TextStyle(
+                    fontFamily: "Poppins",
+                    fontSize: 20,
+                  ),
+                ),
+                const Text(
+                  "Quota Limit: 100",
+                  style: TextStyle(fontSize: 20),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 25),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10),
                 child: LinearPercentIndicator(
                   animation: true,
+                  width: MediaQuery.of(context).size.width - 20,
                   animationDuration: 1000,
                   lineHeight: 20,
                   percent: calculatetotalCO2usage(),
@@ -188,15 +213,36 @@ class _QuotaPageState extends State<QuotaPage> {
                 ),
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            child: Divider(
+              thickness: 1,
+              color: Color.fromARGB(255, 204, 204, 204),
+            ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 15),
+                child: Text(
+                  "Daily log",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+              Center(
+                child: Padding(
                   padding: const EdgeInsets.only(bottom: 120),
                   child: HeatMap(
-                    startDate: DateTime.now().subtract(const Duration(days: 14)),
+                    startDate:
+                        DateTime.now().subtract(const Duration(days: 14)),
                     endDate: DateTime.now().add(const Duration(days: 40)),
-                    margin: const EdgeInsets.symmetric(horizontal: 7, vertical: 5),
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: 7, vertical: 5),
                     datasets: _generateHeatmapDataset(),
                     colorMode: ColorMode.opacity,
                     showText: true,
@@ -215,10 +261,10 @@ class _QuotaPageState extends State<QuotaPage> {
                     },
                   ),
                 ),
-              ],
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
