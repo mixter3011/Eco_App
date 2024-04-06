@@ -9,8 +9,6 @@ class StatsPage extends StatefulWidget {
 }
 
 class _StatsPageState extends State<StatsPage> {
-  //bottom bar variables
-  int _currentBottomIndex = 0;
   late String currentDateText;
   late DateTime selectedDate;
   List<int> emissions = List.filled(4, 0);
@@ -23,17 +21,17 @@ class _StatsPageState extends State<StatsPage> {
     _updateEmissions(selectedDate);
   }
 
-  void _handleBottomIndexChange(int? index) {
-    setState(() {
-      _currentBottomIndex = index!;
-    });
-  }
-
   // padding constants
   final double verticalPadding = 25;
 
+  /* 
+  [CHITRAKSH]
+  This list is a placeholder for the actual data that will be fetched from the database.
+  Furthermore, values inside this list will be modified to be Mapped into a list containing DateTime & an int value.
+  */
+
   List<List<dynamic>> deviceUsage = [
-    // [ Date, Device1's Usage, Device2's Usage, Device3's Usage, Device4's Usage,  ]
+    // [ Date, Device1's Usage, Device2's Usage, Device3's Usage, Device4's Usage ]
     ["2024-03-22", 21, 18, 23, 17],
     ["2024-03-23", 20, 22, 16, 19],
     ["2024-03-24", 24, 15, 20, 18],
@@ -60,7 +58,7 @@ class _StatsPageState extends State<StatsPage> {
       /* 
       The bottom two lines impact the calculation of the total device usage.
       Right now it's simply 100 - (sum of data)
-      [TODO:] Update with formula
+      [TODO:] THESE TWO LINES ARE WHAT SHOULD BE MODIFIED TO IMPLEMENT THE ACTUAL FORMULA
       */
       int totalDeviceUsage = data[1] + data[2] + data[3] + data[4];
       int calculatedValue = 100 - totalDeviceUsage;
@@ -122,7 +120,7 @@ class _StatsPageState extends State<StatsPage> {
                   scrollable: true,
                   showColorTip: false,
                   colorsets: const {
-                    1: Colors.green,
+                    7: Colors.green,
                   },
                   onClick: (value) {
                     setState(() {
@@ -148,75 +146,74 @@ class _StatsPageState extends State<StatsPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(
-                    vertical: 8, horizontal: 16), // Remove padding on left
+                padding:
+                    const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                 child: Column(
-                  crossAxisAlignment:
-                      CrossAxisAlignment.start, // Align text to the start
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Your Statistics: ${currentDateText}',
-                      style: TextStyle(
+                      'Your Statistics: $currentDateText',
+                      style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                           fontFamily: "Poppins"),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Row(
                       children: [
-                        Icon(Icons.laptop),
+                        const Icon(Icons.laptop),
                         const SizedBox(width: 8),
                         Text(
                           '${emissions[0]} ton CO2 emitted',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     Row(
                       children: [
-                        Icon(Icons.phone_android),
+                        const Icon(Icons.phone_android),
                         const SizedBox(width: 8),
                         Text(
                           '${emissions[1]} ton CO2 emitted',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     Row(
                       children: [
-                        Icon(Icons.wind_power),
+                        const Icon(Icons.wind_power),
                         const SizedBox(width: 8),
                         Text(
                           '${emissions[2]} ton CO2 emitted',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     Row(
                       children: [
-                        Icon(Icons.tv),
+                        const Icon(Icons.tv),
                         const SizedBox(width: 8),
                         Text(
                           '${emissions[3]} ton CO2 emitted',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
