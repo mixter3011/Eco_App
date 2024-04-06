@@ -44,6 +44,8 @@ dependencies:
   wifi_iot: ^0.3.19
   url_launcher: ^6.2.5
   android_intent: ^2.0.2
+  percent_indicator: ^4.2.3
+  flutter_heatmap_calendar: ^1.0.5
 
 dev_dependencies:
   flutter_test:

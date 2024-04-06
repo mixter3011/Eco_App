@@ -224,52 +224,70 @@ class _MetaMaskWalletState extends State<MetaMaskWallet> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        // Handle first circular button tap
-                      },
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: const BoxDecoration(
-                          color: Colors.blue,
-                          shape: BoxShape.circle,
+                    Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            // Handle first circular button tap
+                          },
+                          child: Container(
+                            width: 50,
+                            height: 50,
+                            decoration: const BoxDecoration(
+                              color: Colors.blue,
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(Icons.call_received_outlined,
+                                color: Colors.white),
+                          ),
                         ),
-                        child: const Icon(Icons.call_received_outlined,
-                            color: Colors.white),
-                      ),
+                        const SizedBox(height: 2),
+                        const Text("Received", style: TextStyle(fontFamily: "Poppins", color: Colors.blue),)
+                      ],
                     ),
                     const SizedBox(width: 40),
-                    GestureDetector(
-                      onTap: () {
-                        // Handle second circular button tap
-                      },
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: const BoxDecoration(
-                          color: Colors.blue,
-                          shape: BoxShape.circle,
+                    Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            // Handle second circular button tap
+                          },
+                          child: Container(
+                            width: 50,
+                            height: 50,
+                            decoration: const BoxDecoration(
+                              color: Colors.blue,
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(Icons.arrow_outward_outlined,
+                                color: Colors.white),
+                          ),
                         ),
-                        child: const Icon(Icons.arrow_outward_outlined,
-                            color: Colors.white),
-                      ),
+                        const SizedBox(height: 2),
+                        const Text("Sell",style: TextStyle(fontFamily: "Poppins", color: Colors.blue, fontSize: 16),)
+                      ],
                     ),
                     const SizedBox(width: 40),
-                    GestureDetector(
-                      onTap: () {
-                        // Handle third circular button tap
-                      },
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: const BoxDecoration(
-                          color: Colors.blue,
-                          shape: BoxShape.circle,
+                    Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            // Handle third circular button tap
+                          },
+                          child: Container(
+                            width: 50,
+                            height: 50,
+                            decoration: const BoxDecoration(
+                              color: Colors.blue,
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(Icons.swap_horiz_outlined,
+                                color: Colors.white),
+                          ),
                         ),
-                        child: const Icon(Icons.swap_horiz_outlined,
-                            color: Colors.white),
-                      ),
+                        const SizedBox(height: 2),
+                        const Text("Swap",style: TextStyle(fontFamily: "Poppins", color: Colors.blue, fontSize: 14),)
+                      ],
                     ),
                   ],
                 ),
@@ -277,7 +295,7 @@ class _MetaMaskWalletState extends State<MetaMaskWallet> {
             ),
           ),
           Positioned(
-            top: MediaQuery.of(context).size.height * 0.52,
+            top: MediaQuery.of(context).size.height * 0.54,
             left: 20,
             right: 20,
             child: DefaultTabController(
@@ -304,8 +322,8 @@ class _MetaMaskWalletState extends State<MetaMaskWallet> {
                               backgroundImage: const AssetImage(
                                   "lib/assets/images/glass_image.png"),
                               imageProvider: const AssetImage(
-                                  "lib/assets/images/digitalocean.png"),
-                              text: 'Digital Ocean Credits',
+                                  "lib/assets/images/bms-removebg-preview.png"),
+                              text: 'Book My Show Coupon',
                               subText: 'Date: 2024-04-05\nQuantity: X 1',
                             ),
                             _buildAssetItem(
