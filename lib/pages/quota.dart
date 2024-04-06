@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, unused_local_variable, avoid_function_literals_in_foreach_calls, unused_element
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -43,8 +45,8 @@ class _QuotaPageState extends State<QuotaPage> {
     _updateEmissions(selectedDate);
   }
 
-  void sendPUTRequest() async {
-    final url = Uri.parse('http://localhost:8181');
+  void sendPostRequest() async {
+    final url = Uri.parse('http://192.168.33.204:8181/api/auth/register/');
 
     final List<Map<String, dynamic>> listOfObjects = [
       {'2024-03-22': '79', '2024-03-23': '77'},
@@ -60,31 +62,31 @@ class _QuotaPageState extends State<QuotaPage> {
     final usage = json.encode({'arrayname': listOfObjects});
 
     try {
-      final response = await http.put(
+      final response = await http.post(
         url,
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
-        body: {usage},
+        body: json.encode({
+          "email": "sabychakraborty08@gmail.com",
+          "password": "password1234"
+        }),
       );
 
       if (response.statusCode == 200) {
-        print('PUT Request Succesful');
+        print('Post Request Succesful');
         print('Response: ${response.body}');
       } else {
-        print('Failed to send PUT request');
+        print('Failed to send Post request');
         print('Response status code: ${response.statusCode}');
         print('Response body: ${response.body}');
       }
     } catch (e) {
-      print('Error sending PUT request: $e');
+      print('Error sending Post request: $e');
     }
   }
 
-  void main() {
-    sendPUTRequest();
-  }
-
+  
   // padding constants
   final double verticalPadding = 25;
 
@@ -274,14 +276,14 @@ class _QuotaPageState extends State<QuotaPage> {
                 child: Text(
                   "Daily log",
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      fontFamily: "Poppins"),
                 ),
               ),
               Center(
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 120),
+                  padding: const EdgeInsets.only(bottom: 20),
                   child: HeatMap(
                     startDate:
                         DateTime.now().subtract(const Duration(days: 14)),
@@ -308,6 +310,86 @@ class _QuotaPageState extends State<QuotaPage> {
                 ),
               ),
             ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Statistics for $currentDataText',
+                  style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "Poppins"),
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    const Icon(Icons.laptop),
+                    const SizedBox(width: 8),
+                    Text(
+                      '${emissions[0]} ton CO2 emitted',
+                      style: const TextStyle(
+                        fontSize: 20,
+                        // fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  children: [
+                    const Icon(Icons.phone_android),
+                    const SizedBox(width: 8),
+                    Text(
+                      '${emissions[1]} ton CO2 emitted',
+                      style: const TextStyle(
+                        fontSize: 20,
+                        // fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  children: [
+                    const Icon(Icons.wind_power),
+                    const SizedBox(width: 8),
+                    Text(
+                      '${emissions[2]} ton CO2 emitted',
+                      style: const TextStyle(
+                        fontSize: 20,
+                        // fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  children: [
+                    const Icon(Icons.tv),
+                    const SizedBox(width: 8),
+                    Text(
+                      '${emissions[3]} ton CO2 emitted',
+                      style: const TextStyle(
+                        fontSize: 20,
+                        // fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    ElevatedButton(onPressed: () {
+                      sendPostRequest();
+                    }, child: const Text("Press button nigga"))
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),
