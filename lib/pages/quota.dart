@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:http/http.dart' as http;
 
 class QuotaPage extends StatefulWidget {
   const QuotaPage({Key? key}) : super(key: key);
@@ -38,6 +41,48 @@ class _QuotaPageState extends State<QuotaPage> {
     selectedDate = DateTime.now();
     currentDataText = _getCurrentDateText(selectedDate);
     _updateEmissions(selectedDate);
+  }
+
+  void sendPUTRequest() async {
+    final url = Uri.parse('http://localhost:8181');
+
+    final List<Map<String, dynamic>> listOfObjects = [
+      {'2024-03-22': '79', '2024-03-23': '77'},
+      {'2024-03-24': '77', '2024-03-25': '75'},
+      {'2024-03-26': '80', '2024-03-27': '82'},
+      {'2024-03-28': '84', '2024-03-29': '72'},
+      {'2024-03-30': '79', '2024-03-31': '78'},
+      {'2024-04-01': '83', '2024-04-02': '80'},
+      {'2024-04-03': '77', '2024-04-04': '78'},
+      {'2024-04-05': '77', '2024-04-06': '76'},
+    ];
+
+    final usage = json.encode({'arrayname': listOfObjects});
+
+    try {
+      final response = await http.put(
+        url,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: {usage},
+      );
+
+      if (response.statusCode == 200) {
+        print('PUT Request Succesful');
+        print('Response: ${response.body}');
+      } else {
+        print('Failed to send PUT request');
+        print('Response status code: ${response.statusCode}');
+        print('Response body: ${response.body}');
+      }
+    } catch (e) {
+      print('Error sending PUT request: $e');
+    }
+  }
+
+  void main() {
+    sendPUTRequest();
   }
 
   // padding constants
@@ -229,18 +274,18 @@ class _QuotaPageState extends State<QuotaPage> {
                 child: Text(
                   "Daily log",
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      fontFamily: "Poppins"),
                 ),
               ),
               Center(
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 120),
+                  padding: const EdgeInsets.only(bottom: 20),
                   child: HeatMap(
                     startDate:
                         DateTime.now().subtract(const Duration(days: 14)),
-                    endDate: DateTime.now().add(const Duration(days: 40)),
+                    endDate: DateTime.now().add(const Duration(days: 20)),
                     margin:
                         const EdgeInsets.symmetric(horizontal: 7, vertical: 5),
                     datasets: _generateHeatmapDataset(),
@@ -263,6 +308,83 @@ class _QuotaPageState extends State<QuotaPage> {
                 ),
               ),
             ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Statistics for $currentDataText',
+                  style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "Poppins"),
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    const Icon(Icons.laptop),
+                    const SizedBox(width: 8),
+                    Text(
+                      '${emissions[0]} ton CO2 emitted',
+                      style: const TextStyle(
+                        fontSize: 20,
+                        // fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  children: [
+                    const Icon(Icons.phone_android),
+                    const SizedBox(width: 8),
+                    Text(
+                      '${emissions[1]} ton CO2 emitted',
+                      style: const TextStyle(
+                        fontSize: 20,
+                        // fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  children: [
+                    const Icon(Icons.wind_power),
+                    const SizedBox(width: 8),
+                    Text(
+                      '${emissions[2]} ton CO2 emitted',
+                      style: const TextStyle(
+                        fontSize: 20,
+                        // fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  children: [
+                    const Icon(Icons.tv),
+                    const SizedBox(width: 8),
+                    Text(
+                      '${emissions[3]} ton CO2 emitted',
+                      style: const TextStyle(
+                        fontSize: 20,
+                        // fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),
