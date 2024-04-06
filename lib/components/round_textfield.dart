@@ -29,7 +29,7 @@ class RoundTextField extends StatelessWidget {
                 title,
                 textAlign: titleAlign,
                 style: TextStyle(
-                  color: textColor ?? Colors.grey[500], // Use textColor if provided, else default to TColor.gray50
+                  color: textColor ?? Colors.white, // Use textColor if provided, else default to TColor.gray50
                   fontSize: 12,
                 ),
               ),

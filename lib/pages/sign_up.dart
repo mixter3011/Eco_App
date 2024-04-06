@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:smarthomeui/components/round_textfield.dart';
 import 'package:smarthomeui/components/secondary_button.dart';
 import 'package:smarthomeui/pages/home_page.dart';
@@ -12,8 +15,51 @@ class SignUpView extends StatefulWidget {
 }
 
 class _SignUpViewState extends State<SignUpView> {
+  late bool success;
   TextEditingController txtEmail = TextEditingController();
   TextEditingController txtPassword = TextEditingController();
+
+  void sendPostRequest() async {
+    final url = Uri.parse('http://192.168.33.204:8181/api/auth/register/');
+    print(txtEmail.text);
+    print(txtPassword.text);
+    try {
+      final response = await http.post(
+        url,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body:
+            json.encode({"email": txtEmail.text, "password": txtPassword.text}),
+      );
+
+      if (response.statusCode == 201) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomePage(),
+          ),
+        );
+        print('Post Request Successful');
+        print('Response: ${response.body}');
+        setState(() {
+          success = true;
+        });
+      } else {
+        print('Failed to send Post request');
+        print('Response status code: ${response.statusCode}');
+        print('Response body: ${response.body}');
+        setState(() {
+          success = false;
+        });
+      }
+    } catch (e) {
+      print('Error sending Post request: $e');
+      setState(() {
+        success = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +78,7 @@ class _SignUpViewState extends State<SignUpView> {
             height: 30,
           ),
           RoundTextField(
-            controller: txtEmail,
+            controller: txtPassword,
             obscureText: true,
             title: 'Password',
             hintText: 'Password',
@@ -98,12 +144,33 @@ class _SignUpViewState extends State<SignUpView> {
           SecondaryButton(
             title: "Get started, it's free!",
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const HomePage(),
-                ),
-              );
+              sendPostRequest();
+              if (success == true) {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const HomePage(),
+                  ),
+                );
+              } else {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text("There was an error logging in"),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text("OK"),
+                        )
+                      ],
+                    );
+                  },
+                );
+              }
             },
           ),
           const SizedBox(height: 12),
