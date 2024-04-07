@@ -48,7 +48,7 @@ class _QuotaPageState extends State<QuotaPage> {
   void sendPostRequest() async {
     final url = Uri.parse('http://192.168.33.204:8181/api/auth/register/');
 
-    final List<Map<String, dynamic>> listOfObjects = [
+    final List<Map<String, dynamic>> listOfObjects = [  
       {'2024-03-22': '79', '2024-03-23': '77'},
       {'2024-03-24': '77', '2024-03-25': '75'},
       {'2024-03-26': '80', '2024-03-27': '82'},
@@ -383,9 +383,10 @@ class _QuotaPageState extends State<QuotaPage> {
                         // fontWeight: FontWeight.bold,
                       ),
                     ),
+                    const SizedBox(width: 50),
                     ElevatedButton(onPressed: () {
                       sendPostRequest();
-                    }, child: const Text("Press button nigga"))
+                    }, child: const Text("Update Data", style: TextStyle(fontFamily: "Poppins", color: Colors.blue),))
                   ],
                 ),
               ],

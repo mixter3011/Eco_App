@@ -13,7 +13,7 @@ class AddEmissionPage extends StatefulWidget {
 List emissions = [
   // [ emissionType, emissionValue ]
   ["Food", 0.0],
-  ["Electricity", 0.0],
+  ["Electricity", 37.0],
   ["Vehicle", 0.0],
   ["Purchases", 0.0],
 ];
@@ -86,7 +86,11 @@ class _AddEmissionPageState extends State<AddEmissionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("ADD EMISSION",style: TextStyle(fontFamily: "Poppins"),),
+        title: const Text(
+          "ADD EMISSION",
+          style: TextStyle(fontFamily: "Poppins"),
+        ),
+        centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.background,
       ),
       body: Column(
@@ -112,7 +116,8 @@ class _AddEmissionPageState extends State<AddEmissionPage> {
                       children: [
                         Text(
                           "$emissionsValue ",
-                          style: const TextStyle(fontSize: 48, fontFamily: "Poppins"),
+                          style: const TextStyle(
+                              fontSize: 48, fontFamily: "Poppins"),
                         ),
                         const Text(
                           "ton CO₂",
@@ -184,17 +189,20 @@ class _AddEmissionPageState extends State<AddEmissionPage> {
                       const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
                   child: Row(
                     children: [
-                      const Icon(Icons.eco, size: 20),  
+                      const Icon(Icons.eco, size: 20),
                       const SizedBox(width: 8),
                       Text(
                         '${emission[0]} Emissions:',
                         style: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold, fontFamily: "Poppins"),
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "Poppins"),
                       ),
                       const SizedBox(width: 8),
                       Text(
                         '${emission[1].toStringAsFixed(1)}',
-                        style: const TextStyle(fontSize: 16, fontFamily: "Poppins"),
+                        style: const TextStyle(
+                            fontSize: 16, fontFamily: "Poppins"),
                       ),
                     ],
                   ),
