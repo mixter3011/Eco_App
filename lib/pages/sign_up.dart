@@ -20,7 +20,8 @@ class _SignUpViewState extends State<SignUpView> {
   TextEditingController txtPassword = TextEditingController();
 
   void sendPostRequest() async {
-    final url = Uri.parse('http://192.168.33.204:8181/api/auth/register/');
+    final url = Uri.parse(
+        'http://eco-backend-production-8c5d.up.railway/api/auth/register/');
     print(txtEmail.text);
     print(txtPassword.text);
     try {

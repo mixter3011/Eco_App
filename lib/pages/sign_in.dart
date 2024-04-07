@@ -22,7 +22,8 @@ class _SignInViewState extends State<SignInView> {
   TextEditingController txtPassword = TextEditingController();
   bool isRemember = false;
   void sendPostRequest() async {
-    final url = Uri.parse('http://192.168.33.204:8181/api/auth/login/');
+    final url = Uri.parse(
+        'http://eco-backend-production-8c5d.up.railway/api/auth/login/');
     print(txtEmail.text);
     print(txtPassword.text);
     try {
@@ -140,7 +141,11 @@ class _SignInViewState extends State<SignInView> {
                     return AlertDialog(
                       title: Text("There was an error logging in"),
                       actions: <Widget>[
-                        TextButton(onPressed: () {Navigator.of(context).pop();}, child: Text("OK"))
+                        TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text("OK"))
                       ],
                     );
                   },
