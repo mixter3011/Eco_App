@@ -382,11 +382,16 @@ class _QuotaPageState extends State<QuotaPage> {
                         // fontWeight: FontWeight.bold,
                       ),
                     ),
+                    const SizedBox(width: 50),
                     ElevatedButton(
                         onPressed: () {
                           sendPostRequest();
                         },
-                        child: const Text("Press button nigga"))
+                        child: const Text(
+                          "Update Data",
+                          style: TextStyle(
+                              fontFamily: "Poppins", color: Colors.blue),
+                        ))
                   ],
                 ),
               ],
